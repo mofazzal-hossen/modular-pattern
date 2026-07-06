@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 id SERIAL PRIMARY KEY, 
 name VARCHAR(20),
-email VARCHAR(20) NOT NULL,
+email VARCHAR(20) UNIQUE NOT NULL,
 password VARCHAR(20) NOT NULL ,
 is_active BOOLEAN DEFAULT true,
 age INT,
@@ -55,17 +55,20 @@ app.get('/', (req :Request, res:Response) => {
   })
 });
 
-
+///API response-কে সুন্দর ও organized রাখার জন্য। , এভাবে success, message, data আলাদা থাকে এবং frontend-এর জন্য parse করা সহজ হয়।
+// you must be check INSERT query-তে parameter-এর order 
 app.post('/', async(req:Request, res:Response)=>{
   // console.log(req.body) you do try clg
 
-  const {name , email, password}= req.body   ///API response-কে সুন্দর ও organized রাখার জন্য। , এভাবে success, message, data আলাদা থাকে এবং frontend-এর জন্য parse করা সহজ হয়।
+  const {name , email,age, password}= req.body   
+  const result = await pool.query(`
+    INSERT INTO users (name, email,  password ,age  )  
+    VALUES ($1,$2,$3,$4) RETURNING *
+    
+    `,[name , email, password, age ])
   res.status(201).json({
     message:"successfully make by data",
-    data:{
-      name,
-      email,
-    }
+    data: result.rows[0],
 
 
     })
