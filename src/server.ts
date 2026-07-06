@@ -1,5 +1,5 @@
 import express, { type Application, type Request, type Response } from 'express'
-import {Pool} from "pg"
+import {DatabaseError, Pool} from "pg"
 const app : Application = express()
 const port = 9000
 // you must used all time MeddleWare 
@@ -14,6 +14,37 @@ const pool = new Pool({
   connectionString:"postgresql://neondb_owner:npg_hS6D7qkWBouK@ep-calm-leaf-atx7sci5-pooler.c-9.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
 
 })
+
+// make a DataTable 
+//check data database connection
+//postgresql create tables search in w3 school
+
+const initDB = async()=>{
+  try {
+    await pool.query(`
+CREATE TABLE IF NOT EXISTS users (
+
+id SERIAL PRIMARY KEY, 
+name VARCHAR(20),
+email VARCHAR(20) NOT NULL,
+password VARCHAR(20) NOT NULL ,
+is_active BOOLEAN DEFAULT true,
+age INT,
+
+created_at TIMESTAMP DEFAULT NOW(),
+updated_at TIMESTAMP DEFAULT NOW()
+
+);
+
+      `)
+
+      console.log("DataBase connected successfully " )
+  } catch (error) {
+    console.log(error)
+  }
+};
+initDB();
+//end
 
 
 app.get('/', (req :Request, res:Response) => {
