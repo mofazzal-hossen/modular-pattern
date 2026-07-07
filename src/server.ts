@@ -1,7 +1,8 @@
 import express, { type Application, type Request, type Response } from 'express'
 import { Pool } from "pg"
+import config from './config'
 const app: Application = express()
-const port = 9000
+const port = config.PORT
 // you must used all time MeddleWare 
 app.use(express.json())
 app.use(express.text()) //show text data 
@@ -11,8 +12,7 @@ app.use(express.urlencoded({ extended: true })) //{extended:true} all type data 
 //pg connection 
 
 const pool = new Pool({
-  connectionString: "postgresql://neondb_owner:npg_hS6D7qkWBouK@ep-calm-leaf-atx7sci5-pooler.c-9.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
-
+  connectionString: config.connect_string,
 })
 
 // make a DataTable 
