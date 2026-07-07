@@ -1,5 +1,5 @@
 import express, { type Application, type Request, type Response } from 'express'
-import { DatabaseError, Pool } from "pg"
+import { Pool } from "pg"
 const app: Application = express()
 const port = 9000
 // you must used all time MeddleWare 
@@ -112,8 +112,8 @@ res.status(500).json({
 });
 
 
-app.get('/api/user:id', async(req:Request, res:Response)=>{
-    const {id}= req.body
+app.get('/api/user/:id', async(req:Request, res:Response)=>{
+    const {id}= req.params
 try {
   const result = await pool.query(`
      SELECT * FROM users WHERE id=$1  
