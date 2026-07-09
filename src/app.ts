@@ -2,6 +2,7 @@ import express, { type Application, type Request, type Response } from 'express'
 import config from './config'
 import { pool } from './db'
 import { userRoute } from './modules/user/user.route'
+import { profileRoute } from './modules/profile/profile.route'
 const app: Application = express()
 
 // you must used all time MeddleWare 
@@ -10,7 +11,6 @@ app.use(express.text()) //show text data
 app.use(express.urlencoded({ extended: true })) //{extended:true} all type data show as like nested-data. 
 //end
 
-app.use('/api/user',userRoute)
 
 
 
@@ -23,47 +23,8 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-//   try {
-//     const result = await pool.query(`
-//     SELECT * FROM users
-// `)
-
-// res.status(200).json({
-//   success:true,
-//   message:"user successfully red " ,
-//   data: result.rows,
-
-// })
-//   } catch (error:any) {
-// res.status(500).json({
-//     success:false,
-//   message:error.message,
-//   error:error,
-
-// })
-
-//   }
-// });
-
-
-
-
-
-
-
-
+app.use('/api/user',userRoute)
+app.use('/api/profile',profileRoute)
 
 
 export default app
