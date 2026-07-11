@@ -1,5 +1,8 @@
 import bcrypt from "bcryptjs";
 import { pool } from "../../db";
+import jwt from 'jsonwebtoken'
+import config from "../../config";
+import { Result } from "pg";
 
 
 const loginUserIntoDB =async(payload: {email: string, password:string})=>{
@@ -18,20 +21,27 @@ const userData = await pool.query(
 const user = userData.rows[0];
 // console.log(user)
 const matchPassword = await bcrypt.compare(password,user.password)
-console.log(matchPassword)
+// console.log(matchPassword)
  if(!matchPassword){
   throw new Error('invalid credentials!,');
   
- }
+ };
 
+//make token
+
+const jwtPayload ={
+  id: user.id,
+  name:user.name,
+  is_active:user.is_active,
+  email: user.email
 }
+const accessToken= jwt.sign(jwtPayload,
+  config.secret as string,
+  {expiresIn:"1d"});
 
 
-
-
-
-
-
+return {accessToken};
+}
 
 export const authService ={
     loginUserIntoDB
