@@ -1,3 +1,4 @@
+import bcrypt from "bcryptjs";
 import { pool } from "../../db";
 
 
@@ -14,6 +15,14 @@ const userData = await pool.query(
   if (userData.rows.length === 0) {
     throw new Error("Invalid Credentials!");
   }
+const user = userData.rows[0];
+// console.log(user)
+const matchPassword = await bcrypt.compare(password,user.password)
+console.log(matchPassword)
+ if(!matchPassword){
+  throw new Error('invalid credentials!,');
+  
+ }
 
 }
 

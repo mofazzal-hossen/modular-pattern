@@ -18,6 +18,8 @@ const {user_id, bio, address, phone ,gender, } = payload
     throw new Error("User not exists!");
   }
 
+
+
   const result = await pool.query(
     `
    INSERT INTO profiles(user_id, bio, address, phone, gender) VALUES($1,$2,$3,$4,$5) RETURNING *
