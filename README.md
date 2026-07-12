@@ -33,17 +33,32 @@ A simple REST API built with **Express**, **TypeScript**, and **PostgreSQL**. Th
 ## 📁 Project Structure
 
 ```text
-express-server-auth/
-│
-├── src/
-│   ├── config/
-│   │   └── index.ts
-│   └── server.ts
-│
+project-root/
 ├── package.json
 ├── tsconfig.json
 ├── .env
-└── README.md
+├── README.md
+└── src/
+  ├── app.ts
+  ├── server.ts
+  ├── config/
+  │   └── index.ts
+  ├── db/
+  │   └── index.ts
+  └── modules/
+    ├── auth/
+    │   ├── auth.controller.ts
+    │   ├── auth.route.ts
+    │   └── auth.service.ts
+    ├── profile/
+    │   ├── profile.controller.ts
+    │   ├── profile.route.ts
+    │   └── profile.service.ts
+    └── user/
+      ├── user.controller.ts
+      ├── user.interface.ts
+      ├── user.route.ts
+      └── user.service.ts
 ```
 
 ---

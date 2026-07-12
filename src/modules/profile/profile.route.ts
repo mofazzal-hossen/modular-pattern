@@ -1,6 +1,6 @@
 
-import { Router,  } from 'express';
-import { profileController } from './profile.controler';
+import { Router, } from 'express';
+import { profileController } from './profile.controller';
 
 const router = Router();
 
@@ -8,4 +8,4 @@ const router = Router();
 router.post('/', profileController.createProfile)
 
 
-export const profileRoute =router
+export const profileRoute = router
