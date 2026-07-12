@@ -26,7 +26,27 @@ A simple REST API built with **Express**, **TypeScript**, and **PostgreSQL**. Th
 * TypeScript
 * PostgreSQL
 * pg
-* ts-node-dev
+* tsx
+
+---
+
+## 📦 Which Packages I Used
+
+### Dependencies
+
+* `bcryptjs` - hashes and verifies passwords securely without native bindings, used for user authentication workflows.
+* `dotenv` - loads environment variables from a `.env` file, keeping database credentials and app settings out of source code.
+* `express` - the web server framework that handles routing, middleware, and HTTP request/response flow.
+* `jsonwebtoken` - creates and verifies JWTs for issuing and validating authentication tokens.
+* `pg` - PostgreSQL client library used to connect to the database and execute SQL queries.
+
+### Dev Dependencies
+
+* `@types/express` - TypeScript type definitions for Express, enabling strong typing for request/response objects.
+* `@types/jsonwebtoken` - TypeScript type definitions for `jsonwebtoken`, improving type safety when working with tokens.
+* `@types/pg` - TypeScript type definitions for the PostgreSQL client, giving autocompletion and compile-time checks.
+* `tsx` - development utility that runs TypeScript files directly and supports watch mode for local development.
+* `typescript` - the compiler for the project, converting TypeScript source files into JavaScript.
 
 ---
 
