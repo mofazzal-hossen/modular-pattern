@@ -9,8 +9,15 @@ import { pool } from "../db";
 
 const auth = ()=>{
    return async (req : Request, res:Response, next: NextFunction)=>{
-    // console.log("this is protected route")
+try {
+        // console.log("this is protected route")
     // console.log(req.headers.authorization)
+
+      // 1. Check if the token exists
+      // 2. Verify the token
+      // 3. Find the user into database
+      // 4. If the user active or not?
+
 
     const token = req.headers.authorization;
     if (!token) {
@@ -42,9 +49,14 @@ if (!user.is_active) {
     })
 };
 
+req.user = decoded 
+
 
 
   next();  
+} catch (error) {
+    next(error)
+}
 };
 }
 
