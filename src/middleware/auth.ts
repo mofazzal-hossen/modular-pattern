@@ -7,7 +7,8 @@ import { pool } from "../db";
 
 
 
-const auth = ()=>{
+const auth = (...roles: any)=>{
+    console.log(roles)
    return async (req : Request, res:Response, next: NextFunction)=>{
 try {
         // console.log("this is protected route")
@@ -42,7 +43,7 @@ if (userData.rows.length === 0) {
     })
 };
 
-if (!user.is_active) {
+if (!user?.is_active) {
     res.status(404).json({
         success:"false",
         message:"forbidden!!"
