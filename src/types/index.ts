@@ -5,3 +5,6 @@ export const USER_ROLE ={
     agent:"agent",
     user:"user",
 } as const;
+
+
+export type ROLES = 'admin'| 'agent'|'user';
