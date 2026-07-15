@@ -8,8 +8,9 @@ import { pool } from "../db";
 
 
 const auth = (...roles: any)=>{
-    console.log(roles)
+
    return async (req : Request, res:Response, next: NextFunction)=>{
+        console.log(roles)
 try {
         // console.log("this is protected route")
     // console.log(req.headers.authorization)
@@ -49,6 +50,14 @@ if (!user?.is_active) {
         message:"forbidden!!"
     })
 };
+
+// console.log('auth role :', user.role)
+if (roles.length && roles.includes(user.role)) {
+    res.status(404).json({
+        success:"false",
+        message:"forbidden!! ,role is not found "
+    })
+}
 
 req.user = decoded 
 
