@@ -31,6 +31,11 @@ res.cookie("refreshToken", refreshToken,{
 }
 }
 
+const refreshToken = async(req:Request, res:Response)=>{
+console.log(req.cookies)
+}
+
 export const authController ={
     loginUser,
+    refreshToken
 }

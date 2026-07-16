@@ -3,7 +3,7 @@ import { userRoute } from './modules/user/user.route'
 import { profileRoute } from './modules/profile/profile.route'
 import { authRoute } from './modules/auth/auth.route'
 import logger from './middleware/logger';
-
+import cookieParser from 'cookie-parser';
 
 const app: Application = express()
 
@@ -13,6 +13,7 @@ app.use(express.text()) //show text data
 app.use(express.urlencoded({ extended: true })) //{extended:true} all type data show as like nested-data. 
 
 app.use(logger); // middle ware logger.tsx tracking file 
+app.use(cookieParser())
 //end
 
 

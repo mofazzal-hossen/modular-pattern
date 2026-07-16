@@ -43,7 +43,7 @@ const accessToken= jwt.sign(jwtPayload,
 const refreshToken= jwt.sign(jwtPayload,
   config.refresh_secret as string,
   {expiresIn:"1d"});
- console.log(refreshToken) /// mark not 
+
 
 return {accessToken ,refreshToken};
 }
