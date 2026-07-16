@@ -5,6 +5,7 @@ import { authRoute } from './modules/auth/auth.route'
 import logger from './middleware/logger';
 import cookieParser from 'cookie-parser';
 import cors from 'cors'
+import globalErrorHandler from './middleware/globalErrorHandler';
 
 const app: Application = express()
 
@@ -40,4 +41,6 @@ app.use('/api/user',userRoute)
 app.use('/api/profile',profileRoute)
 app.use('/api/auth',authRoute)
 
+// Global Error Handling Middleware
+app.use(globalErrorHandler);
 export default app
