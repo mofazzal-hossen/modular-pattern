@@ -1,4 +1,5 @@
 import { userService } from "./user.service";
+import sendResponse from "../../sendResponse";
 const createUser = async (req, res) => {
     // console.log(req.body) you do try clg
     //   const { name, email, age, password } = req.body
@@ -17,16 +18,19 @@ const createUser = async (req, res) => {
     }
 };
 const getAllUser = async (req, res) => {
+    // console.log('controller', req.user)
     try {
         const result = await userService.getAllUserFromDB();
-        res.status(200).json({
+        sendResponse(res, {
+            statusCode: 201,
             success: true,
             message: "user successfully red ",
             data: result.rows,
         });
     }
     catch (error) {
-        res.status(500).json({
+        sendResponse(res, {
+            statusCode: 500,
             success: false,
             message: error.message,
             error: error,
