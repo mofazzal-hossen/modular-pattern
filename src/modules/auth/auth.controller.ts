@@ -29,10 +29,29 @@ res.cookie("refreshToken", refreshToken,{
             error: error,
         });
 }
-}
+};
 
 const refreshToken = async(req:Request, res:Response)=>{
-console.log(req.cookies)
+try {
+
+const result = await authService.generateRefreshToken(req.cookies.refreshToken)
+
+
+
+
+
+     res.status(201).json({
+            success: true,
+            message: "access token generate",
+            data: result,
+        });
+} catch (error: any) {
+     res.status(500).json({
+            success: false,
+            message: error.message,
+            error: error,
+        });
+}
 }
 
 export const authController ={
